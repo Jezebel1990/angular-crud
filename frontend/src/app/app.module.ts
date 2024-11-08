@@ -14,6 +14,8 @@ import { MatListModule } from '@angular/material/list';
 import { HomeComponent } from './views/home/home.component';
 import { ProductCrudComponent } from './views/product-crud/product-crud.component';
 import { YellowDirective } from './directives/yellow.directive';
+import { ProductCreateComponent } from './components/product/product-create/product-create.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { YellowDirective } from './directives/yellow.directive';
     NavComponent,
     HomeComponent,
     ProductCrudComponent,
-    YellowDirective
+    YellowDirective,
+    ProductCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,8 @@ import { YellowDirective } from './directives/yellow.directive';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
-    MatCardModule
+    MatCardModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
