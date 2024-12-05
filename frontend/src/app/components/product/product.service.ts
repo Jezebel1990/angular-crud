@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Product } from './product.model';
 import { Observable } from 'rxjs';
-import { url } from 'inspector';
 
 @Injectable({
   providedIn: 'root'
