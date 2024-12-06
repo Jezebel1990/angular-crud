@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Product } from './product.model';
 import { Observable } from 'rxjs';
-import { url } from 'inspector';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +28,7 @@ export class ProductService {
     return this.http.get<Product[]>(this.baseUrl)
   }
 
-  readById(id: string): Observable<Product> {
+  readById(id: number): Observable<Product> {
   const url = `${this.baseUrl}/${id}`
   return this.http.get<Product>(url)
   }
@@ -39,7 +38,7 @@ export class ProductService {
     return this.http.put<Product>(url, product)
   }
 
-  delete(id: string): Observable<Product> {
+  delete(id: number): Observable<Product> {
     const url = `${this.baseUrl}/${id}`
     return this.http.delete<Product>(url)
   }
