@@ -4,6 +4,9 @@ const { Database } = require('@sqlitecloud/drivers'); // Importa o SQLiteCloud
 require('dotenv').config(); // Carrega as variáveis de ambiente do arquivo .env
 
 const express = require('express');
+const cors = require('cors');
+const helmet = require('helmet');
+
 const app = express();
 
 // Lê a URL de conexão do banco de dados SQLiteCloud da variável de ambiente
@@ -17,12 +20,29 @@ const db = new Database(DATABASE_URL);
 
 // Middleware para processar dados JSON no corpo da requisição
 app.use(express.json());
+app.use(helmet());
 
-const cors = require('cors');
+const allowedOrigins = ['http://localhost:4200'];
 app.use(cors({
-  origin: 'http://localhost:4200', 
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Origem não permitida pelo CORS'));
+    }
+  },
   credentials: true
 }));
+
+(async () => {
+  try {
+    await db.sql`SELECT 1;`;
+    console.log('Conexão com o banco de dados estabelecida com sucesso.');
+  } catch (err) {
+    console.error('Erro ao conectar ao banco de dados:', err.message);
+    process.exit(1);
+  }
+})();
 
 
 // Rota GET para retornar todos os produtos
