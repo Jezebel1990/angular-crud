@@ -1,0 +1,10 @@
+{
+    "/products": {
+      "target": "https://angular-crud-3gwi.onrender.com",
+      "secure": false,
+      "logLevel": "debug",
+      "pathRewrite": {
+        "^/products": ""
+      }
+    }
+}

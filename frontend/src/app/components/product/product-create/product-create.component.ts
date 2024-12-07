@@ -15,7 +15,6 @@ product: Product = {
   price: null
 }
 
-
   constructor(private productService: ProductService,
     private router: Router) { }
 
@@ -24,17 +23,9 @@ product: Product = {
 }
 
 createProduct(): void {
- this.productService.create(this.product).subscribe((createdProduct) => {
-  if (typeof createdProduct.id === 'string') {
-    createdProduct.id = Number(parseInt(createdProduct.id, 16)); 
-  }
-  if (typeof createdProduct.price === 'string') {
-    createdProduct.price = parseFloat(createdProduct.price);
-  }
+ this.productService.create(this.product).subscribe(() => {
   this.productService.showMessage('Produto criado!')
   this.router.navigate(['/products'])
-  }, err => {
-      this.productService.showMessage('Erro ao criar o produto');
     });
   }
 
