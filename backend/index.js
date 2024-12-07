@@ -18,6 +18,13 @@ const db = new Database(DATABASE_URL);
 // Middleware para processar dados JSON no corpo da requisição
 app.use(express.json());
 
+const cors = require('cors');
+app.use(cors({
+  origin: 'http://localhost:4200', 
+  credentials: true
+}));
+
+
 // Rota GET para retornar todos os produtos
 app.get('/products', async (req, res) => {
   try {
