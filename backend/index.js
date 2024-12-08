@@ -14,7 +14,9 @@ const DATABASE_URL = process.env.DATABASE_URL;
 console.assert(DATABASE_URL, 'DATABASE_URL environment variable not set in .env');
 
 const port = process.env.PORT || 3000;
-
+const allowedOrigins = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(',')
+  : [];
 // Cria uma instância do banco de dados usando a URL de conexão do SQLiteCloud
 const db = new Database(DATABASE_URL);
 
@@ -22,7 +24,6 @@ const db = new Database(DATABASE_URL);
 app.use(express.json());
 app.use(helmet());
 
-const allowedOrigins = ['http://localhost:4200'];
 app.use(cors({
   origin: (origin, callback) => {
     if (!origin || allowedOrigins.includes(origin)) {
